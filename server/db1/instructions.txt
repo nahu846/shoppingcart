@@ -1,0 +1,12 @@
+
+dockerd (to initialize docker daemon)
+
+docker-compose up -d
+
+docker exec -it db1_db_1 /bin/bash
+mysql -u"user" -p"password"
+
+create table users(id int, name varchar(50), primary key(id));
+create table products(id int, name varchar(50), price int, stock int, description varchar(200), primary key(id));
+create table orders(id_user int, id_product int, quantity int, total_amount int, creation_date date, state varchar(10));
+
