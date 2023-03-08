@@ -7,6 +7,8 @@ docker exec -it db1_db_1 /bin/bash
 mysql -u"user" -p"password"
 
 create table users(id int, name varchar(50), primary key(id));
-create table products(id int, name varchar(50), price int, stock int, description varchar(200), primary key(id));
-create table orders(id_user int, id_product int, quantity int, total_amount int, creation_date date, state varchar(10));
+create table products(id int, name varchar(50), price int, stock int, quantity int, description varchar(200), primary key(id));
+create table orderItems(id int primary key, id_user int, id_product int, quantity int, total_amount int, creation_date date, state varchar(10), foreign key (id_user) references users(id), foreign key (id_product) references products(id));
 
+alter table orderItems add constraint id_user foreign key (id_user) references users(id);
+alter table orderItems add constraint id_product foreign key (id_product) references products(id);
